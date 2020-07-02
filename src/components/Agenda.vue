@@ -8,7 +8,7 @@
               size="sm"
               round
               outline
-              @click="openModal(null,'')"
+              @click="openModal()"
               style="font-size:8px;text-transform:capitalize; margin: 30px"
             />
         </q-item>
@@ -68,21 +68,21 @@
                 color='grey'
                 @click="openModal(props.row, 'edit')"
                 icon='edit'
-                ><q-tooltip>Editar contacto</q-tooltip> </q-btn>
+                ><q-tooltip>Editar</q-tooltip> </q-btn>
                 <q-btn 
                  flat
                  round
                  color='grey'
                  icon='cancel'
                  @click='openConfirmModal(props.row.id)'
-                ><q-tooltip>Eliminar contacto</q-tooltip></q-btn>
+                ><q-tooltip>Eliminar</q-tooltip></q-btn>
                  <q-btn 
                  flat
                  round
                  color='grey'
                  icon='visibility'
                  @click="openModal(props.row, 'view')"
-                ><q-tooltip>Eliminar contacto</q-tooltip></q-btn>   
+                ><q-tooltip>Ver</q-tooltip></q-btn>   
               </q-td>
               
             </q-tr>

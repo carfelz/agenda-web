@@ -43,7 +43,7 @@
                         :readonly="isReadonly"
                         style="width:500px; margin-bottom: 10px;"
                         />
-                        <q-card-section style="border-top:1px #eee solid;padding:10px;" v-if="!isReadonly">
+                        <q-card-section style="border-top:1px #eee solid;padding:10px;" v-if="!isReadonly && isAdding">
                             <q-btn
                             align="right"
                             label="Save"
@@ -51,6 +51,16 @@
                             color="blue-grey-4"
                             class="float-right"
                             type="submit"
+                            ></q-btn>
+                        </q-card-section>
+                        <q-card-section style="border-top:1px #eee solid;padding:10px;" v-else>
+                            <q-btn
+                            align="right"
+                            label="Save"
+                            style="text-transform:capitalize;font-size:12px;margin-bottom:15px"
+                            color="blue-grey-4"
+                            class="float-right"
+                            @click="submitEdit"
                             ></q-btn>
                         </q-card-section>
                     </q-form>
@@ -96,10 +106,9 @@ methods:{
     this.form.phone = ''
     this.form.emailAddress = ''
    },
-   async submit(){
-    if(this.action == 'edit'){
-        console.log("edit")
-        await agendaAPI.updateContacs(this.form).then( ()=>{
+
+async submitEdit(){
+await agendaAPI.updateContacs(this.form).then( ()=>{
             this.$emit('added')
             this.isOpen = false;
             this.$q.notify({
@@ -114,7 +123,8 @@ methods:{
              position: 'bottom-right'
             })
         })
-    }else{
+},
+   async submit(){
          await agendaAPI.addContacts(this.form).then( ()=>{
             this.$emit('added')
             this.isOpen = false;
@@ -124,7 +134,6 @@ methods:{
              position: 'bottom-right'
             })
         });
-    }
     
 }
 }
